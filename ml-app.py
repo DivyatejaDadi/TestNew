@@ -81,6 +81,10 @@ with st.sidebar.header('1. Upload your CSV data'):
     st.sidebar.markdown("""
 [Example CSV input file](https://raw.githubusercontent.com/dataprofessor/data/master/delaney_solubility_with_descriptors.csv)
 """)
+    
+ #Sidebar- collecting if the file uploaded has header(column-headings)   
+ with st.sidebar.header('1.2 Does your file contains header'):
+    b= st.sidebar.slider('Header of CSV', yes, no)
 
 # Sidebar - Specify parameter settings
 with st.sidebar.header('2. Set Parameters'):
@@ -106,7 +110,17 @@ with st.sidebar.subheader('2.2. General Parameters'):
 st.subheader('1. Dataset')
 
 if uploaded_file is not None:
-    df = pd.read_csv(uploaded_file)
+    file_path=str(input("Please enter proper File path:"))
+    print("Please enter the path of a cross-sectional comma-separated values(csv) file only: \n")
+    b=input("Please type 'Yes' if your data has header, else 'No': ").upper()
+    if b=='YES':
+        data=pd.read_csv(file_path, skipinitialspace = True,skip_blank_lines=True, error_bad_lines=False)
+        data.columns = data.columns.str.upper()
+    elif b=='NO':
+        data=pd.read_csv(file_path, skipinitialspace = True, header=None,skip_blank_lines=True, error_bad_lines=False)
+        headers=np.arange(start=0, stop=data.shape[1], step=1)
+        data=pd.DataFrame(data, columns=headers)
+        
     st.markdown('**1.1. Glimpse of dataset**')
     st.write(df)
     build_model(df)
