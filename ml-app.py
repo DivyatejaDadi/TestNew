@@ -83,7 +83,7 @@ with st.sidebar.header('1. Upload your CSV data'):
 """)
     
  #Sidebar- collecting if the file uploaded has header(column-headings)   
- with st.sidebar.header('1.1.2 Does your file contains header'):
+ with st.sidebar.header('1.2.1 Does your file contains header'):
     b= st.sidebar.slider('Header of CSV', yes, no)
 
 # Sidebar - Specify parameter settings
