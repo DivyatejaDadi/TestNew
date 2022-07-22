@@ -82,9 +82,6 @@ with st.sidebar.header('1. Upload your CSV data'):
 [Example CSV input file](https://raw.githubusercontent.com/dataprofessor/data/master/delaney_solubility_with_descriptors.csv)
 """)
     
- #Sidebar- collecting if the file uploaded has header(column-headings)   
- with st.sidebar.header('1.2.1 Does your file contains header'):
-    b= st.sidebar.slider('Header of CSV', yes, no)
 
 # Sidebar - Specify parameter settings
 with st.sidebar.header('2. Set Parameters'):
